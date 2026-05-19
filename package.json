@@ -2,9 +2,9 @@
   "name": "@falcochat/cli",
   "version": "1.0.9",
   "description": "CLI tool for interactive AI chat with OpenAI API-compatible providers",
-  "main": "index.js",
+  "main": "lib/cli.js",
   "bin": {
-    "falcochat": "./index.js"
+    "falcochat": "./bin/falcochat.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
