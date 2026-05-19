@@ -1,6 +1,6 @@
 {
   "name": "@falcochat/cli",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "CLI tool for interactive AI chat with OpenAI API-compatible providers",
   "main": "lib/cli.js",
   "bin": {
