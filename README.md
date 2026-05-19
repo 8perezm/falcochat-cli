@@ -1,6 +1,21 @@
 # FalcoChat
 
-A simple command-line interface for interactive AI chat conversations with any OpenAI API-compatible provider (OpenRouter, OpenAI, Together AI, Ollama, etc.).
+A modular command-line interface for interactive AI chat conversations with any OpenAI API-compatible provider (OpenRouter, OpenAI, Together AI, Ollama, etc.).
+
+## Project Structure
+
+```
+falcochat/
+├── bin/
+│   └── falcochat.js       # CLI entry point
+├── lib/
+│   ├── config.js          # Config & env management
+│   ├── models.js           # List & validate models
+│   ├── chat.js             # Chat, stream & conversation modes
+│   └── cli.js              # CLI setup & argument parsing
+├── test.sh                 # Test suite
+└── package.json
+```
 
 ## Installation
 
@@ -14,7 +29,7 @@ Copy the environment file and add your API key:
 cp .env.example .env
 ```
 
-Then edit `.env` and add your API key and configure the API URL for your preferred provider
+Then edit `.env` and add your API key and configure the API URL for your preferred provider.
 
 ## Usage
 
@@ -22,18 +37,25 @@ Then edit `.env` and add your API key and configure the API URL for your preferr
 
 ```bash
 # Start interactive conversation (default mode)
-falcochat
-falcochat "Hello!"                      # Start with initial prompt
-falcochat -s                             # Streaming conversation
-falcochat -m "openai/gpt-3.5-turbo"    # With model selection
+node bin/falcochat.js
+node bin/falcochat.js "Hello!"                 # Start with initial prompt
+node bin/falcochat.js -s                        # Streaming conversation
+node bin/falcochat.js -m "openai/gpt-4o-mini"  # With model selection
 
 # Single prompt (no conversation)
-falcochat -1 "What is 2+2?"            # Single prompt mode
+node bin/falcochat.js -1 "What is 2+2?"
+
+# List available models
+node bin/falcochat.js -l
+node bin/falcochat.js --list-models
+
+# Set a default model
+node bin/falcochat.js --set-model "google/gemini-pro"
 
 # Other options
-falcochat -m "anthropic/claude-3-haiku" "Explain quantum"
-falcochat -s "Tell me a story"          # Stream a single response
-falcochat -f prompt.txt                 # Read prompt from file
+node bin/falcochat.js -m "anthropic/claude-3-haiku" "Explain quantum"
+node bin/falcochat.js -s "Tell me a story"         # Stream a single response
+node bin/falcochat.js -f prompt.txt                 # Read prompt from file
 ```
 
 ## Linking as a global command
@@ -43,11 +65,20 @@ npm link
 falcochat                             # Start conversation mode
 falcochat "Hello!"                    # Conversation with initial prompt
 falcochat -1 "What is 2+2?"          # Single prompt
+falcochat -l                          # List models
 ```
+
+## Running Tests
+
+```bash
+./test.sh
+```
+
+Tests cover help, version, model listing, single prompts, streaming, model overrides, file input, and error handling. Requires a configured API key for chat tests (they skip gracefully if missing).
 
 ## Available Models
 
-See https://openrouter.ai/models for all available models.
+See [openrouter.ai/models](https://openrouter.ai/models) for all available models.
 
 ## Environment Variables
 
@@ -58,7 +89,11 @@ See https://openrouter.ai/models for all available models.
   - Together AI: `https://api.together.xyz/v1`
   - Ollama: `http://localhost:11434/v1`
 - `OPENAI_MODEL` - Default model (provider-specific, e.g., `gpt-3.5-turbo`)
-  - Note: Tencent models (like `tencent/hy3-preview`) may respond in Chinese by default
-  - Recommended: `openai/gpt-3.5-turbo`, `anthropic/claude-3-haiku`, etc.
+  - Recommended: `openai/gpt-4o-mini`, `anthropic/claude-3-haiku`, etc.
+- `OPENAI_LANGUAGE` - Language preference (optional, e.g., `en`, `es`, `fr`, `de`)
 - `OPENAI_SITE_NAME` - Site name (mainly for OpenRouter rankings)
 - `OPENAI_SITE_URL` - Site URL (mainly for OpenRouter rankings)
+
+## Config persistence
+
+Default model selections are saved to `~/.config/falcochat/config.json`. Environment variables are loaded from `~/.config/falcochat/.env` (global) or `./.env` (local, project-specific).
