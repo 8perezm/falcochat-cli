@@ -1,4 +1,3 @@
-# This workflow automates the process of publishing the package to npm whenever changes are pushed to the main branch or when manually triggered. It determines the version bump type based on conventional commit messages, updates the version, creates a git tag, publishes to npm, and creates a GitHub release.
 name: Publish to npm
 
 on:
