@@ -30,6 +30,8 @@
   },
   "files": [
     "index.js",
+    "bin/",
+    "lib/",
     ".env.example",
     "README.md"
   ],
