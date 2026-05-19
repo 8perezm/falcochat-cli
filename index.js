@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// FalcoChat CLI - Interactive AI chat with OpenAI API-compatible providers
 
 const { OpenAI } = require('openai');
 const dotenv = require('dotenv');
@@ -157,10 +158,11 @@ const client = new OpenAI({
 });
 
 // Configure Commander.js
+const packageJson = require('./package.json');
 program
   .name('falcochat')
   .description('FalcoChat - Interactive AI chat with OpenAI API-compatible providers')
-  .version('1.0.0')
+  .version(packageJson.version)
   .option('-m, --model <model>', 'Specify model', model)
   .option('--set-model <model>', 'Set default model for future sessions')
   .option('--list-models', 'List available models from the API')
