@@ -129,8 +129,8 @@ const savedModel = getDefaultModel();
 const model = savedModel || process.env.OPENAI_MODEL || 'openai/gpt-3.5-turbo';
 const apiUrl = process.env.OPENAI_API_URL || 'https://openrouter.ai/api/v1';
 const language = process.env.OPENAI_LANGUAGE; // Optional: language preference
-const siteName = process.env.OPENAI_SITE_NAME || 'FalcoChatCLI';
-const siteUrl = process.env.OPENAI_SITE_URL || 'https://example.com';
+const siteName = 'FalcoChat';
+const siteUrl = 'https://falcochat.com';
 
 // Check if API key is still the placeholder value
 if (apiKey === 'your_api_key_here' || apiKey === '') {
