@@ -1,0 +1,39 @@
+{
+  "name": "@falcochat/cli",
+  "version": "1.0.1",
+  "description": "CLI tool for interactive AI chat with OpenAI API-compatible providers",
+  "main": "index.js",
+  "bin": {
+    "falcochat": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "chat",
+    "openai",
+    "openrouter",
+    "cli",
+    "llm"
+  ],
+  "author": "Miguel Perez <support@falcochat.com>",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "commander": "^14.0.3",
+    "dotenv": "^17.4.2",
+    "openai": "^6.38.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    ".env.example",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
