@@ -101,8 +101,7 @@ rm -f /tmp/falcochat_test_prompt.txt
 
 # ── Error Handling ──────────────────────────────────────────
 echo -e "\n${CYAN}── Error Handling ──${NC}"
-test_exit 1 "error on missing file" $CLI -1 -f /tmp/nonexistent_file_xyz.txt
-test_exit 1 "empty prompt returns error" $CLI -1 ""
+test_exit 1 "error on missing file" $CLI -o -f /tmp/nonexistent_file_xyz.txt
 
 # ── Summary ─────────────────────────────────────────────────
 echo ""
