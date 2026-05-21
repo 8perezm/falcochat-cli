@@ -86,17 +86,17 @@ fi
 
 # ── Single Prompt ────────────────────────────────────────────
 echo -e "\n${CYAN}── Single Prompt ──${NC}"
-test_contains "single prompt (-1)" "hello"  $CLI -1 "Say hello in one word"
-test_contains "single streaming (-1 -s)" "hello" $CLI -1 -s "Say hello in one word"
+test_contains "single prompt (-o)" "hello"  $CLI -o "Say hello in one word"
+test_contains "single streaming (-o -s)" "hello" $CLI -o -s "Say hello in one word"
 
 # ── Model Override ──────────────────────────────────────────
 echo -e "\n${CYAN}── Model Override ──${NC}"
-test_contains "model override (-m)" "hello" $CLI -1 -m "openai/gpt-4o-mini" "Say hello in one word"
+test_contains "model override (-m)" "hello" $CLI -o -m "openai/gpt-4o-mini" "Say hello in one word"
 
 # ── File Input ───────────────────────────────────────────────
 echo -e "\n${CYAN}── File Input ──${NC}"
 echo "Say hello in one word" > /tmp/falcochat_test_prompt.txt
-test_contains "file input (-f)" "hello" $CLI -1 -f /tmp/falcochat_test_prompt.txt
+test_contains "file input (-f)" "hello" $CLI -o -f /tmp/falcochat_test_prompt.txt
 rm -f /tmp/falcochat_test_prompt.txt
 
 # ── Error Handling ──────────────────────────────────────────
