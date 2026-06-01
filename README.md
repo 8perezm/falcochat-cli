@@ -19,9 +19,27 @@ falcochat/
 
 ## Installation
 
+### Install from npm:
+
+```bash
+npm i @falcochat/cli
+```
+
+### Clone repository
+
+f you are cloning the repository locally, install dependencies in the repo first:
+
 ```bash
 npm install
 ```
+
+If want to use the CLI command globally from your machine while developing locally, link it after installing dependencies:
+
+```bash
+npm link
+```
+
+# Environment variable
 
 Copy the environment file and add your API key:
 
@@ -31,36 +49,40 @@ cp .env.example .env
 
 Then edit `.env` and add your API key and configure the API URL for your preferred provider.
 
+
 ## Usage
 
 **Conversation mode is now the default!**
 
 ```bash
 # Start interactive conversation (default mode)
-node bin/falcochat.js
-node bin/falcochat.js "Hello!"                 # Start with initial prompt
-node bin/falcochat.js -s                        # Streaming conversation
-node bin/falcochat.js -m "openai/gpt-4o-mini"  # With model selection
+falcochat
+falcochat "Hello!"                 # Start with initial prompt
+falcochat -s                        # Streaming conversation
+falcochat -m "openai/gpt-4o-mini"  # With model selection
 
 # Single prompt (no conversation)
-node bin/falcochat.js -1 "What is 2+2?"
+falcochat -1 "What is 2+2?"
 
 # List available models
-node bin/falcochat.js -l
-node bin/falcochat.js --list-models
+falcochat -l
+falcochat --list-models
 
 # Set a default model
-node bin/falcochat.js --set-model "google/gemini-pro"
+falcochat --set-model "google/gemini-pro"
 
 # Other options
-node bin/falcochat.js -m "anthropic/claude-3-haiku" "Explain quantum"
-node bin/falcochat.js -s "Tell me a story"         # Stream a single response
-node bin/falcochat.js -f prompt.txt                 # Read prompt from file
+falcochat -m "anthropic/claude-3-haiku" "Explain quantum"
+falcochat -s "Tell me a story"         # Stream a single response
+falcochat -f prompt.txt                 # Read prompt from file
 ```
 
-## Linking as a global command
+## Local Development
+
+For a local clone, use `npm link` to expose the command on your machine while you work:
 
 ```bash
+npm install
 npm link
 falcochat                             # Start conversation mode
 falcochat "Hello!"                    # Conversation with initial prompt

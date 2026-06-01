@@ -1,0 +1,45 @@
+name: "Code Review Workflow"
+description: "Analyze code structure, then write a project summary"
+version: "1.0"
+
+defaults:
+  model: "openrouter/tencent/hy3-preview"
+  alternativeModel: "anthropic/claude-sonnet-4-20250514"
+  retries: 2
+
+tasks:
+  - id: "plan"
+    name: "Plan Analysis"
+    agent: ./.agents/planner.agent.md
+    command: "{{prompt}}"
+
+  - id: "coding"
+    name: "Build code"
+    agent: ./.agents/software-engineer-agent-v1.agent.md
+    carryContext: true
+    carryContextMode: "message"
+
+  - id: "analyze"
+    name: "Analyze Code"
+    agent: ./.agents/analyzer.agent.md
+    carryContext: true
+    carryContextMode: "message"
+
+  # - id: "review-pause"
+  #   name: "Review Analysis"
+  #   type: pause
+  #   message: 'Review the analysis above. Press Enter to continue to the summary step, or type "q" to abort.'
+
+  # - id: "summarize"
+  #   name: "Write Summary"
+  #   command: "Based on the analysis above, write a brief outline for this project."
+  #   carryContext: true
+  #   carryContextMode: "message"
+  #   dependsOn: "analyze"
+
+  # - id: "both-example"
+  #   name: "Extend with Both Modes"
+  #   command: "Add a new README type document to ./.play give it a unique file name"
+  #   carryContext: true
+  #   carryContextMode: "both"
+  #   dependsOn: "summarize"
