@@ -19,27 +19,23 @@ falcochat/
 
 ## Installation
 
-### Install from npm:
+Install from npm:
 
 ```bash
 npm i @falcochat/cli
 ```
 
-### Clone repository
-
-f you are cloning the repository locally, install dependencies in the repo first:
+If you are cloning the repository locally, install dependencies in the repo first:
 
 ```bash
 npm install
 ```
 
-If want to use the CLI command globally from your machine while developing locally, link it after installing dependencies:
+If you want to use the CLI command globally from your machine while developing locally, link it after installing dependencies:
 
 ```bash
 npm link
 ```
-
-# Environment variable
 
 Copy the environment file and add your API key:
 
